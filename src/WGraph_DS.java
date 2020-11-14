@@ -215,33 +215,14 @@ public class WGraph_DS implements weighted_graph , java.io.Serializable {
             this.weight = weight;
         }
 
-        public node_info getSrc() {
-            return src;
-        }
-
-        public void setSrc(node_info src) {
-            this.src = src;
-        }
-
         public node_info getDest() {
             return dest;
-        }
-
-        public void setDest(node_info dest) {
-            this.dest = dest;
         }
 
         public double getWeight() {
             return weight;
         }
 
-        public void setWeight(double weight) {
-            this.weight = weight;
-        }
-
-        public int getkey() {
-            return this.key;
-        }
 
 
 
@@ -251,20 +232,6 @@ public class WGraph_DS implements weighted_graph , java.io.Serializable {
             if (o == null || getClass() != o.getClass()) return false;
             Edge edge = (Edge) o;
             return Double.compare(edge.weight, weight) == 0;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(weight);
-        }
-
-        @Override
-        public String toString() {
-            return " {" + key +"="+
-                    "{" + src.getKey() +
-                    "," + dest.getKey() +
-                    "}" +", weight=" + weight +
-                    '}';
         }
 
         @Override

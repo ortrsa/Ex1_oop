@@ -148,7 +148,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
             fileInputStream.close();
             objectInputStream.close();
             this.g0 = loadedFile;
-            System.out.println(file + " was load successfully");
+            System.out.println(file + " was loaded successfully");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             return false;
