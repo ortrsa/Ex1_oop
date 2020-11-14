@@ -75,6 +75,7 @@ public class WGraph_DS implements weighted_graph {
 
     @Override
     public Collection<node_info> getV(int node_id) {
+        if(!g.containsKey(node_id)) return null;
         Collection<node_info> c = new ArrayList<>();
         Iterator<Integer> it = edges.get(node_id).keySet().iterator();
         while (it.hasNext()) {
@@ -278,10 +279,10 @@ public class WGraph_DS implements weighted_graph {
 
     @Override
     public String toString() {
-        return "WGraph_DS{" +
+        return
                 "MC=" + MC +
                 ", g=" + g +
-                 "\nEdges"+ edges +
+                 "\n" +
                 '}';
     }
 
