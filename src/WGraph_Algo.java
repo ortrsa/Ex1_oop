@@ -1,3 +1,6 @@
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.*;
 
 public class WGraph_Algo implements weighted_graph_algorithms {
@@ -8,8 +11,6 @@ public class WGraph_Algo implements weighted_graph_algorithms {
     private Set<node_info> used;
     private PriorityQueue<node_info> unused;
     private List<node_info> path;
-
-
 
 
     public WGraph_Algo() {
@@ -105,11 +106,11 @@ public class WGraph_Algo implements weighted_graph_algorithms {
         path = new ArrayList<>();
         reset_nodes();
         Dijkstra(src);
-        if(g0.getNode(dest).getTag()==-1) return path;
+        if (g0.getNode(dest).getTag() == -1) return path;
         node_info pointerNode = g0.getNode(dest);
         path.add(pointerNode);
-        while (pointerNode!= g0.getNode(src)) {
-           pointerNode = nodePar.get(pointerNode);
+        while (pointerNode != g0.getNode(src)) {
+            pointerNode = nodePar.get(pointerNode);
             path.add(pointerNode);
         }
 
@@ -118,7 +119,23 @@ public class WGraph_Algo implements weighted_graph_algorithms {
 
     @Override
     public boolean save(String file) {
-        return false;
+        System.out.println("serialize " + file + "\n");
+        try{
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            ObjectOutputStream objectOutputStream
+                    = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(this.g0);
+
+            fileOutputStream.close();
+            objectOutputStream.close();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+            return false;
+
+        }
+        System.out.println(file +" was saved successfully");
+        return true;
     }
 
     @Override
@@ -127,7 +144,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
     }
 
 
-    public void Dijkstra(int src){
+    public void Dijkstra(int src) {
 
 
         g0.getNode(src).setTag(0.0);
@@ -147,14 +164,14 @@ public class WGraph_Algo implements weighted_graph_algorithms {
                 double tempNeiDis = nodeDis.get(tempNei); // dis for the Nei we work on.
                 double tDis = nodeDis.get(t); // parent dis.
                 double EdgeDis = g0.getEdge(t.getKey(), tempNei.getKey()); // the edge.
-                if ((tempNeiDis == -1.0 || tempNeiDis > (tDis + EdgeDis)) && !used.contains(tempNei) ) {
+                if ((tempNeiDis == -1.0 || tempNeiDis > (tDis + EdgeDis)) && !used.contains(tempNei)) {
                     nodeDis.put(tempNei, tDis + EdgeDis);
                     tempNei.setTag(tDis + EdgeDis);
                     unused.add(tempNei);
-                   if (nodePar!=null) {
-                       nodePar.put(tempNei, t);
+                    if (nodePar != null) {
+                        nodePar.put(tempNei, t);
 
-                   }
+                    }
 
                 }
 
@@ -166,7 +183,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
 
     }
 
-    private void reset_nodes(){
+    private void reset_nodes() {
         Iterator<node_info> it2 = g0.getV().iterator();
         while (it2.hasNext()) {
             node_info temp = it2.next();

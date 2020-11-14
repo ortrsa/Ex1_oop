@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class WGraph_DS implements weighted_graph {
+public class WGraph_DS implements weighted_graph , java.io.Serializable {
 
 
     private int MC;
