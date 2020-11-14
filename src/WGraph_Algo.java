@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.*;
 
-public class WGraph_Algo implements weighted_graph_algorithms {
+public class WGraph_Algo implements weighted_graph_algorithms  {
 
     private weighted_graph g0;
     private HashMap<node_info, Double> nodeDis;
@@ -124,6 +124,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             ObjectOutputStream objectOutputStream
                     = new ObjectOutputStream(fileOutputStream);
+
             objectOutputStream.writeObject(this.g0);
 
             fileOutputStream.close();

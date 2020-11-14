@@ -127,7 +127,7 @@ public class WGraph_DS implements weighted_graph , java.io.Serializable {
 
 
     //***************************************************
-    private class Nodeinfo implements node_info , Comparable<node_info> {
+    private class Nodeinfo implements node_info , Comparable<node_info> , java.io.Serializable {
 
         private int key;
         private String Info;
@@ -201,7 +201,8 @@ public class WGraph_DS implements weighted_graph , java.io.Serializable {
         }
     }
 
-    private class Edge implements Comparable<Edge> {
+//*************************************
+    private class Edge implements Comparable<Edge> , java.io.Serializable {
         private int key;
         private node_info src;
         private node_info dest;
