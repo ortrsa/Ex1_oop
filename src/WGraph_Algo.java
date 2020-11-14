@@ -19,7 +19,6 @@ public class WGraph_Algo implements weighted_graph_algorithms {
     @Override
     public void init(weighted_graph g) {
         this.g0 = g;
-
     }
 
     @Override
@@ -75,7 +74,6 @@ public class WGraph_Algo implements weighted_graph_algorithms {
 
         while (it.hasNext()) {
             node_info t8 = it.next();
-            //System.out.println(t8);
             if (t8.getTag() == -1) {
                 flag = false;
             }
@@ -107,7 +105,6 @@ public class WGraph_Algo implements weighted_graph_algorithms {
         path = new ArrayList<>();
         reset_nodes();
         Dijkstra(src);
-       System.out.println(g0.getNode(dest).getTag());
         if(g0.getNode(dest).getTag()==-1) return path;
         node_info pointerNode = g0.getNode(dest);
         path.add(pointerNode);
@@ -140,12 +137,10 @@ public class WGraph_Algo implements weighted_graph_algorithms {
         while (!unused.isEmpty()) {
 
             node_info t = unused.poll();
-            //System.out.println("*********op node: " + t.getKey());
             used.add(t);
             Iterator<node_info> Nei = g0.getV(t.getKey()).iterator();
             while (Nei.hasNext()) {
                 node_info tempNei = Nei.next();
-               // System.out.println("Nei num:" + tempNei.getKey());
                 if (!nodeDis.containsKey(tempNei)) {
                     nodeDis.put(tempNei, -1.0);
                 }
