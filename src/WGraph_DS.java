@@ -5,13 +5,13 @@ public class WGraph_DS implements weighted_graph , java.io.Serializable {
 
     private int MC;
     private HashMap<Integer, node_info> g;
-    private HashMap<Integer, HashMap<Integer, Edge>> edges;
+    private HashMap<Integer, HashMap<Integer, Double>> edges;
     private int edge_size;
 
 
     public WGraph_DS() {
         g = new HashMap<Integer, node_info>();
-        edges = new HashMap<Integer, HashMap<Integer, Edge>>();
+        edges = new HashMap<Integer, HashMap<Integer, Double>>();
         MC++;
     }
 
@@ -23,17 +23,18 @@ public class WGraph_DS implements weighted_graph , java.io.Serializable {
     @Override
     public boolean hasEdge(int node1, int node2) {
         if(!edges.containsKey(node1) || !edges.containsKey(node2)) return false;
-        return (edges.get(node1).containsKey(node2) ||
+        return (edges.get(node1).containsKey(node2) &&
                 edges.get(node2).containsKey(node1));
 
     }
 
     @Override
     public double getEdge(int node1, int node2) {
+        if(!g.containsKey(node1)||!g.containsKey(node2)) return -1;
         if(node1 == node2) return 0;
         if (!this.hasEdge(node1, node2)) return -1;
-        if (edges.get(node1).containsKey(node2)) return edges.get(node1).get(node2).getWeight();
-        else return edges.get(node2).get(node1).getWeight();
+        if (edges.get(node1).containsKey(node2)) return edges.get(node1).get(node2);
+        else return edges.get(node2).get(node1);
 
     }
 
@@ -41,7 +42,7 @@ public class WGraph_DS implements weighted_graph , java.io.Serializable {
     public void addNode(int key) {
         if (!g.containsKey(key)) {
             node_info temp = new Nodeinfo(key);
-            HashMap<Integer, Edge> t1 = new HashMap<Integer, Edge>();
+            HashMap<Integer, Double> t1 = new HashMap<Integer, Double>();
             edges.put(key, t1);
             g.put(key, temp);
             MC++;
@@ -53,13 +54,12 @@ public class WGraph_DS implements weighted_graph , java.io.Serializable {
     public void connect(int node1, int node2, double w) {
         if (g.get(node1) != null && g.get(node2) != null ) {
             if (!hasEdge(node1, node2) && (node1 != node2)) {
-                Edge temp1 = new Edge(g.get(node1), g.get(node2), w);
-                Edge temp2 = new Edge(g.get(node2), g.get(node1), w);
-                HashMap<Integer, Edge> t1 = edges.get(node1);
-                HashMap<Integer, Edge> t2 = edges.get(node2);
+
+                HashMap<Integer, Double> t1 = edges.get(node1);
+                HashMap<Integer, Double> t2 = edges.get(node2);
                 
-                t1.put(node2, temp1);
-                t2.put(node1, temp2);
+                t1.put(node2, w);
+                t2.put(node1, w);
                 edges.put(node1, t1);
                 edges.put(node2, t2);
                 MC++;
@@ -79,7 +79,7 @@ public class WGraph_DS implements weighted_graph , java.io.Serializable {
         Collection<node_info> c = new ArrayList<>();
         Iterator<Integer> it = edges.get(node_id).keySet().iterator();
         while (it.hasNext()) {
-            c.add(edges.get(node_id).get(it.next()).getDest());
+            c.add(g.get(it.next()));
         }
         return c;
 
@@ -200,49 +200,6 @@ public class WGraph_DS implements weighted_graph , java.io.Serializable {
             return Objects.hash(key);
         }
     }
-
-//*************************************
-    private class Edge implements Comparable<Edge> , java.io.Serializable {
-        private int key;
-        private node_info src;
-        private node_info dest;
-        private double weight;
-
-        public Edge(node_info src, node_info dest, double weight) {
-            this.key = src.getKey();
-            this.src = src;
-            this.dest = dest;
-            this.weight = weight;
-        }
-
-        public node_info getDest() {
-            return dest;
-        }
-
-        public double getWeight() {
-            return weight;
-        }
-
-
-
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Edge edge = (Edge) o;
-            return Double.compare(edge.weight, weight) == 0;
-        }
-
-        @Override
-        public int compareTo(Edge o) {
-            if( weight< o.weight) return -1;
-            if(weight> o.weight) return 1;
-            return 0;
-        }
-
-    }
-
 
 
     @Override
