@@ -1,9 +1,7 @@
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.*;
 
-public class WGraph_Algo implements weighted_graph_algorithms  {
+public class WGraph_Algo implements weighted_graph_algorithms {
 
     private weighted_graph g0;
     private HashMap<node_info, Double> nodeDis;
@@ -119,8 +117,8 @@ public class WGraph_Algo implements weighted_graph_algorithms  {
 
     @Override
     public boolean save(String file) {
-        System.out.println("serialize " + file + "\n");
-        try{
+        System.out.println("serialize " + file);
+        try {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             ObjectOutputStream objectOutputStream
                     = new ObjectOutputStream(fileOutputStream);
@@ -129,18 +127,34 @@ public class WGraph_Algo implements weighted_graph_algorithms  {
 
             fileOutputStream.close();
             objectOutputStream.close();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
             return false;
 
         }
-        System.out.println(file +" was saved successfully");
+        System.out.println(file + " was saved successfully");
         return true;
     }
 
     @Override
     public boolean load(String file) {
+        System.out.println("Deserialize " + file);
+        try {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            ObjectInputStream objectInputStream
+                    = new ObjectInputStream(fileInputStream);
+
+            WGraph_DS loadedFile = (WGraph_DS) objectInputStream.readObject();
+            fileInputStream.close();
+            objectInputStream.close();
+            this.g0 = loadedFile;
+            System.out.println(file + " was load successfully");
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+
         return false;
     }
 
