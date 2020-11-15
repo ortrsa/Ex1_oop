@@ -53,7 +53,7 @@ public class WGraph_DS implements weighted_graph , java.io.Serializable {
     @Override
     public void connect(int node1, int node2, double w) {
         if (g.get(node1) != null && g.get(node2) != null ) {
-            if (!hasEdge(node1, node2) && (node1 != node2)) {
+          //  if (!hasEdge(node1, node2) && (node1 != node2)) {
 
                 HashMap<Integer, Double> t1 = edges.get(node1);
                 HashMap<Integer, Double> t2 = edges.get(node2);
@@ -64,7 +64,7 @@ public class WGraph_DS implements weighted_graph , java.io.Serializable {
                 edges.put(node2, t2);
                 MC++;
                 edge_size++;
-            }
+            //}
         }
     }
 
@@ -123,6 +123,30 @@ public class WGraph_DS implements weighted_graph , java.io.Serializable {
     @Override
     public int getMC() {
         return this.MC;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        WGraph_DS wGraph_ds = (WGraph_DS) o;
+        if (this.nodeSize()!= wGraph_ds.nodeSize())return false;
+        if(this.edge_size != wGraph_ds.edge_size) return false;
+        Iterator node1 = g.keySet().iterator();
+        while (node1.hasNext()){
+            int nodeKey = (int)node1.next();
+            if(!wGraph_ds.g.containsKey(nodeKey)) return false;
+            Iterator node1Nei = edges.get(nodeKey).keySet().iterator();
+            while (node1Nei.hasNext()){
+                int nodeNeiKey = (int)node1Nei.next();
+                if(!wGraph_ds.edges.get(nodeKey).containsKey(nodeNeiKey))return false;
+                //if((double)wGraph_ds.edges.get(nodeKey).get(nodeNeiKey) != (double)this.edges.get(nodeKey).get(nodeNeiKey) )return false;
+            }
+        }
+
+
+        return true;
+
     }
 
 

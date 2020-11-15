@@ -50,7 +50,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
         if (!it.hasNext()) return true;
         boolean flag = true;
 
-        // reset_nodes();
+        reset_nodes();
         Queue<node_info> Q = new LinkedList<>();
         Iterator<node_info> it1 = g0.getV().iterator();
         Q.add(it1.next());
@@ -156,6 +156,15 @@ public class WGraph_Algo implements weighted_graph_algorithms {
 
 
         return false;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        WGraph_Algo that = (WGraph_Algo) o;
+        return g0.equals(that.g0);
     }
 
 
