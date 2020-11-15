@@ -58,11 +58,9 @@ public class WGraph_Algo implements weighted_graph_algorithms {
 
         while (!Q.isEmpty()) {
             node_info t3 = Q.poll();
-            System.out.println(t3);
             Iterator<node_info> it2 = g0.getV(t3.getKey()).iterator();
             while (it2.hasNext()) {
                 node_info t1 = it2.next();
-                System.out.println(t1);
                 if (t1.getTag() < 0) {
                     t1.setTag(t3.getTag() + 1);
                     Q.add(t1);
