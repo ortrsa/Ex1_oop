@@ -53,18 +53,17 @@ public class WGraph_DS implements weighted_graph , java.io.Serializable {
     @Override
     public void connect(int node1, int node2, double w) {
         if (g.get(node1) != null && g.get(node2) != null ) {
-          //  if (!hasEdge(node1, node2) && (node1 != node2)) {
-
+           if ((node1 != node2)) {
+               if(!hasEdge(node1, node2)) edge_size++;
                 HashMap<Integer, Double> t1 = edges.get(node1);
                 HashMap<Integer, Double> t2 = edges.get(node2);
-                
                 t1.put(node2, w);
                 t2.put(node1, w);
                 edges.put(node1, t1);
                 edges.put(node2, t2);
                 MC++;
-                edge_size++;
-            //}
+
+            }
         }
     }
 

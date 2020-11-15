@@ -95,7 +95,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
     }
 
     @Override
-    public List<node_info> shortestPath(int dest, int src) {
+    public List<node_info> shortestPath(int src, int dest) {
         if (g0.getNode(src) == null || g0.getNode(dest) == null) return null;
         used = new HashSet<>();
         unused = new PriorityQueue<>();
@@ -111,7 +111,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
             pointerNode = nodePar.get(pointerNode);
             path.add(pointerNode);
         }
-
+        Collections.reverse(path);
         return path;
     }
 
