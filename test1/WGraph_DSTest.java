@@ -1,8 +1,12 @@
+import org.junit.Rule;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
 import java.util.HashMap;
 import java.util.Random;
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,12 +20,12 @@ class WGraph_DSTest {
     void hasEdge() {
         G = GraphGenerator(5, 10, SEED);
         assertAll("chacing group",
-                () -> assertTrue(G.hasEdge(3, 2)),
-                () -> assertTrue(G.hasEdge(4, 2)),
-                () -> assertTrue(G.hasEdge(3, 4)),
-                () -> assertTrue(G.hasEdge(4, 1)),
+                () -> assertTrue(G.hasEdge(3, 2),"should be edge"),
+                () -> assertTrue(G.hasEdge(4, 2),"should be edge"),
+                () -> assertTrue(G.hasEdge(3, 4),"should be edge"),
+                () -> assertTrue(G.hasEdge(4, 1),"should be edge"),
                 () -> G.removeEdge(4, 1),
-                () -> assertFalse(G.hasEdge(4, 1))
+                () -> assertFalse(G.hasEdge(4, 1),"shouldn't be edge")
         );
 
     }
@@ -29,31 +33,31 @@ class WGraph_DSTest {
     @Test
     void getEdge() {
         G = GraphGenerator(5, 10, SEED);
-        assertEquals(2, G.getEdge(2, 4));
-        assertEquals(2, G.getEdge(4, 2));
-        assertEquals(0, G.getEdge(2, 2));
+        assertEquals(2, G.getEdge(2, 4),"wight of th edge");
+        assertEquals(2, G.getEdge(4, 2),"should be the same as the opposite ");
+        assertEquals(0, G.getEdge(2, 2),"the edge between node to himself should be 0");
         assertEquals(-1, G.getEdge(2, 22), "22 is not a node on this graph");
     }
 
     @Test
     void nodeSize() {
         WGraph_DS G1 = new WGraph_DS();
-        assertEquals(0, G1.nodeSize());
+        assertEquals(0, G1.nodeSize(),"empty graph");
         G = GraphGenerator(5, 10, SEED);
-        assertEquals(5, G.nodeSize());
+        assertEquals(5, G.nodeSize(), "return node size");
         G.removeNode(1);
-        assertEquals(4, G.nodeSize());
+        assertEquals(4, G.nodeSize(), "return node size");
         G.addNode(1);
-        assertEquals(5, G.nodeSize());
+        assertEquals(5, G.nodeSize(), "return node size");
     }
 
     @Test
     void edgeSize() {
         WGraph_DS G1 = new WGraph_DS();
-        assertEquals(0, G1.edgeSize());
+        assertEquals(0, G1.edgeSize(),"no edges");
         G = GraphGenerator(5, 10, SEED);
         assertEquals(10, G.edgeSize());
-        G.removeNode(1);
+
 
     }
 
@@ -64,34 +68,13 @@ class WGraph_DSTest {
         WGraph_Algo gc = new WGraph_Algo();
         ga.init(G);
         gc.init(ga.copy());
-        assertEquals(ga,gc);
+        assertEquals(ga,gc,"the graph and his copy should be equals");
         ga.getGraph().removeNode(5);
-        assertNotEquals(ga,gc);
+        assertNotEquals(ga,gc,"after removing node");
 
     }
 
 
-
-    @org.junit.Test(timeout = 10)
-
-    @Test
-    void time() {
-        rnd = new Random(SEED);
-        int i = 0;
-        int tt =5;
-        int jump = 1000;
-        int no = 1000000, ed = 1000000;
-        WGraph_DS G = GraphGenerator(no, ed, SEED);
-        weighted_graph_algorithms ga = new WGraph_Algo();
-        ga.init(G);
-
-
-        assertEquals( 1., 1.,0.0001);
-//        b = ga.isConnected();
-//        //  System.out.println(g);
-//        //System.out.println(""+i+") "+g.nodeSize()+"  con: "+b);
-       // assertEquals( b, false,"G");
-    }
 
 
 
@@ -113,8 +96,6 @@ class WGraph_DSTest {
             int t = rnd.nextInt(20);
 
             G.connect(v, w, t);
-           // System.out.println(G.edgeSize() + " " + v + " " + w +" "+ (t) );
-
         }
         return G;
     }
