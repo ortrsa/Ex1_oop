@@ -20,7 +20,7 @@ class WGraph_DSTest {
     void hasEdge() {
         G = GraphGenerator(5, 10, SEED);
         WGraph_DS G0 = GraphGenerator(0,0,SEED);
-        assertAll("chacing group",
+        assertAll("checking group",
                 () -> assertFalse(G0.hasEdge(3, 2),"empty graph"),
                 () -> assertTrue(G.hasEdge(3, 2),"should be edge"),
                 () -> assertTrue(G.hasEdge(4, 2),"should be edge"),

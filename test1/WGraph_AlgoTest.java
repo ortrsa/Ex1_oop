@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -46,6 +47,9 @@ class WGraph_AlgoTest {
         WGraph_DS G0 = new WGraph_DS();
         ga.init(G0);
         assertTrue(ga.isConnected(), "empty graph is connected");
+        G0 = GraphGenerator(5, 0, SEED);
+        ga.init(G0);
+        assertFalse(ga.isConnected(), "graph with no edges");
     }
 
     @Test
@@ -56,29 +60,56 @@ class WGraph_AlgoTest {
         G.connect(5, 3, 10);
         ga.init(G);
         double dis = ga.shortestPathDist(4, 5);
-        assertEquals(7.0, dis,"shortest path from 4 to 5");
+        assertEquals(7.0, dis, "shortest path from 4 to 5");
         G.removeNode(2);
         dis = ga.shortestPathDist(4, 5);
-        assertEquals(13.0, dis,"shortest path from 4 to 5 after removing node 2");
+        assertEquals(13.0, dis, "shortest path from 4 to 5 after removing node 2");
 
+        WGraph_DS G0 = new WGraph_DS();
+        ga.init(G0);
+        assertEquals(ga.shortestPathDist(1, 2), -1, "shortest path to non exist nodes is -1");
     }
 
     @Test
     void shortestPath() {
+        G = GraphGenerator(6, 7, SEED);
+        G.connect(0, 2, 10);
+        G.connect(5, 3, 10);
+        WGraph_Algo ga = new WGraph_Algo();
+        ga.init(G);
+        Iterator it = ga.shortestPath(4, 5).iterator();
+        assertAll("4->0->3->1->2->5",
+                () -> assertEquals(it.next(), G.getNode(4)),
+                () -> assertEquals(it.next(), G.getNode(0)),
+                () -> assertEquals(it.next(), G.getNode(3)),
+                () -> assertEquals(it.next(), G.getNode(1)),
+                () -> assertEquals(it.next(), G.getNode(2)),
+                () -> assertEquals(it.next(), G.getNode(5))
+        );
+
     }
 
     @Test
     void File() {
+        G = GraphGenerator(6, 7, SEED);
+        WGraph_Algo ga = new WGraph_Algo();
+        WGraph_Algo q = new WGraph_Algo();
+        ga.init(G);
+        ga.save("file_test.txt");
+        q.load("file_test.txt");
+        assertEquals(G,q.getGraph(),"the graph copy should be equals to the graph source");
+        q.getGraph().removeEdge(0,3);
+        assertNotEquals(G,q.getGraph(),"change on the graph copy shouldn't effect on the graph source ");
 
     }
 
 
-    @Test
-    void time(){
-        graph_creator(10000000, 500000, SEED);
-    }
+//    @Test
+//    void time() {
+//        GraphGenerator(1000000, 500000, SEED);
+//    }
 
-
+/////////////////////////////
     public static WGraph_DS GraphGenerator(int V, int E, int seed) {
         if (E > (long) V * (V - 1) / 2) throw new IllegalArgumentException("Too many edges");
         if (E < 0) throw new IllegalArgumentException("Too few edges");
@@ -89,55 +120,15 @@ class WGraph_AlgoTest {
         }
 
         while (G.edgeSize() < E) {
-
             int v = rnd.nextInt(V);
             int w = rnd.nextInt(V);
             int t = 1 + rnd.nextInt(2);
-
             G.connect(v, w, t);
-           // System.out.println(G.edgeSize() + " " + v + " " + w + " " + (G.getEdge(w, v) == t));
+            //System.out.println( v + " " + w + " " + t); // print the created graph
 
-       }
+        }
         return G;
     }
 
-    public static weighted_graph graph_creator(int v_size, int e_size, int seed) {
-        weighted_graph g = new WGraph_DS();
-        rnd = new Random(seed);
-        for (int i = 0; i < v_size; i++) {
 
-            g.addNode(i);
-        }
-        // Iterator<node_data> itr = V.iterator(); // Iterator is a more elegant and generic way, but KIS is more important
-       // int[] nodes = nodes(g);
-        while (g.edgeSize() < e_size) {
-            int a = nextRnd(0, v_size);
-            int b = nextRnd(0, v_size);
-          //  int i = nodes[a];
-           // int j = nodes[b];
-            g.connect(a, b,5);
-        }
-        return g;
-    }
-    private static int[] nodes(weighted_graph g) {
-        int size = g.nodeSize();
-        Collection<node_info> V = g.getV();
-        node_info[] nodes = new node_info[size];
-        V.toArray(nodes); // O(n) operation
-        int[] ans = new int[size];
-        for(int i=0;i<size;i++) {ans[i] = nodes[i].getKey();}
-        Arrays.sort(ans);
-        return ans;
-    }
-    private static int nextRnd(int min, int max) {
-        double v = nextRnd(0.0+min, (double)max);
-        int ans = (int)v;
-        return ans;
-    }
-    private static double nextRnd(double min, double max) {
-        double d = rnd.nextDouble();
-        double dx = max - min;
-        double ans = d * dx + min;
-        return ans;
-    }
-    }
+}
