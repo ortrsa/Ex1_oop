@@ -19,13 +19,16 @@ class WGraph_DSTest {
     @Test
     void hasEdge() {
         G = GraphGenerator(5, 10, SEED);
+        WGraph_DS G0 = GraphGenerator(0,0,SEED);
         assertAll("chacing group",
+                () -> assertFalse(G0.hasEdge(3, 2),"empty graph"),
                 () -> assertTrue(G.hasEdge(3, 2),"should be edge"),
                 () -> assertTrue(G.hasEdge(4, 2),"should be edge"),
                 () -> assertTrue(G.hasEdge(3, 4),"should be edge"),
                 () -> assertTrue(G.hasEdge(4, 1),"should be edge"),
                 () -> G.removeEdge(4, 1),
-                () -> assertFalse(G.hasEdge(4, 1),"shouldn't be edge")
+                () -> assertFalse(G.hasEdge(4, 1),"shouldn't be edge"),
+                () -> assertFalse(G.hasEdge(10, 1),"the graph doesn't have edge with key 10 ")
         );
 
     }
@@ -37,6 +40,19 @@ class WGraph_DSTest {
         assertEquals(2, G.getEdge(4, 2),"should be the same as the opposite ");
         assertEquals(0, G.getEdge(2, 2),"the edge between node to himself should be 0");
         assertEquals(-1, G.getEdge(2, 22), "22 is not a node on this graph");
+    }
+    @Test
+    void getV_node_id(){
+        G = GraphGenerator(5, 10, SEED);
+        for (int i = 0; i < 4; i++) {
+            assertTrue(G.getV(4).contains(G.getNode(i)),"all nodes are connected to node 4");
+        }
+        assertEquals(G.getV(4).size(),4,"node 4 have 4 Nei");
+        G.removeNode(4);
+        assertNull(G.getV(4),"checking neighbors for deleted node");
+        G.addNode(5);
+        assertNotNull(G.getV(5),"node with no neighbors return empty list but not null");
+
     }
 
     @Test
@@ -88,14 +104,12 @@ class WGraph_DSTest {
         for (int i = 0; i < V; i++) {
             G.addNode(i);
         }
-
         while (G.edgeSize() < E) {
-
             int v = rnd.nextInt(V);
             int w = rnd.nextInt(V);
             int t = rnd.nextInt(20);
-
             G.connect(v, w, t);
+            System.out.println(G.edgeSize() + " " + v + " " + w +" "+ (G.getEdge(w,v)==t) );
         }
         return G;
     }

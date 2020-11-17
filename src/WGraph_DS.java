@@ -52,8 +52,7 @@ public class WGraph_DS implements weighted_graph , java.io.Serializable {
 
     @Override
     public void connect(int node1, int node2, double w) {
-        if (g.get(node1) != null && g.get(node2) != null ) {
-           if ((node1 != node2)) {
+        if (g.containsKey(node1) && g.containsKey(node2)&&node1 != node2 ) {
                if(!hasEdge(node1, node2)) edge_size++;
                 HashMap<Integer, Double> t1 = edges.get(node1);
                 HashMap<Integer, Double> t2 = edges.get(node2);
@@ -63,18 +62,18 @@ public class WGraph_DS implements weighted_graph , java.io.Serializable {
                 edges.put(node2, t2);
                 MC++;
 
-            }
         }
     }
 
     @Override
     public Collection<node_info> getV() {
+        if(g == null)return null;
         return g.values();
     }
 
     @Override
     public Collection<node_info> getV(int node_id) {
-        if(!g.containsKey(node_id)) return null;
+        if(!g.containsKey(node_id)||g.get(node_id)==null) return null;
         Collection<node_info> c = new ArrayList<>();
         Iterator<Integer> it = edges.get(node_id).keySet().iterator();
         while (it.hasNext()) {
