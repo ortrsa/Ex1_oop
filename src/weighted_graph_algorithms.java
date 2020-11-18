@@ -1,9 +1,4 @@
 import java.util.List;
-
-
-
-//asfdadasd
-
 /**
  * This interface represents an Undirected (positive) Weighted Graph Theory algorithms including:
  * 0. clone(); (copy)

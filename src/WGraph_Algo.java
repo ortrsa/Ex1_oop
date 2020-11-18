@@ -1,8 +1,11 @@
 import java.io.*;
 import java.util.*;
 
+/**
+ * this class contain algorithms and methods that used on Undirected (positive) Weighted Graph.
+ * this class implements weighted_graph_algorithms interface and it's methods.
+ */
 public class WGraph_Algo implements weighted_graph_algorithms {
-
     private weighted_graph g0;
     private HashMap<node_info, Double> nodeDis;
     private HashMap<node_info, node_info> nodePar;
@@ -10,20 +13,37 @@ public class WGraph_Algo implements weighted_graph_algorithms {
     private PriorityQueue<node_info> unused;
     private List<node_info> path;
 
-
+    /**
+     * default constructor.
+     */
     public WGraph_Algo() {
         this.g0 = new WGraph_DS();
     }
 
+    /**
+     * Init the graph which this set of algorithms operates on.
+     * @param g
+     */
     @Override
     public void init(weighted_graph g) {
         this.g0 = g;
     }
 
+    /**
+     * return the graph which this set of algorithms operates on.
+     * @return
+     */
     @Override
     public weighted_graph getGraph() {
         return g0;
     }
+
+    /**
+     * this method Compute a deep copy of this graph by making new WGraph_DS,
+     * iterate throw all its nodes and the node neighbors,
+     * use 'addNode' and 'connect' methods to create exactly same graph.
+     * @return
+     */
 
     @Override
     public weighted_graph copy() {
@@ -43,7 +63,16 @@ public class WGraph_Algo implements weighted_graph_algorithms {
         return a;
     }
 
-
+    /**
+     * this method return true if the graph is connected.
+     * if the graph is empty return true.
+     * we assume that the graph is connected, reset all the nodes tag,
+     * take the first node and change the tag of all the node that connected to it
+     * to the distance from the first node.
+     * after that iterate throw all the node, if there is node with tag -1 flag change to false.
+     * return flag at end.
+     * @return
+     */
     @Override
     public boolean isConnected() {
         Iterator<node_info> it = g0.getV().iterator();
@@ -74,11 +103,21 @@ public class WGraph_Algo implements weighted_graph_algorithms {
             if (t8.getTag() == -1) {
                 flag = false;
             }
-            t8.setTag(-1);
         }
 
         return flag;
     }
+
+    /**
+     * return the shortest path distance by apply 'Dijkstra' with src,
+     * the Dijkstra algorithm check the shortest weight from all node to src
+     * and save it on the node tag
+     * after end Dijkstra algorithm return dest tag.
+     *
+     * @param src - start node
+     * @param dest - end (target) node
+     * @return
+     */
 
     @Override
     public double shortestPathDist(int src, int dest) {
@@ -91,6 +130,20 @@ public class WGraph_Algo implements weighted_graph_algorithms {
 
         return g0.getNode(dest).getTag();
     }
+
+    /**
+     * return list that contains the shortest path (by weight) from src to dest.
+     * reset all nodes tag,
+     * apply 'Dijkstra' algorithm with 'src', if the 'dest' doesn't connect to 'src' return -1.
+     * the 'Dijkstra' fill the nodePer HashMap with nodes and it's parents.
+     * create pointer that point to the dest node and add it to the 'path' list,
+     * while the pointer not equal to 'src' node, pointer = 'nodePar'.
+     * reverse path list and return path.
+     *
+     * @param src - start node
+     * @param dest - end (target) node
+     * @return
+     */
 
     @Override
     public List<node_info> shortestPath(int src, int dest) {
@@ -113,6 +166,14 @@ public class WGraph_Algo implements weighted_graph_algorithms {
         return path;
     }
 
+    /**
+     *  Saves this graph to the given file name,
+     *  this method use the serializable interface to serialize the graph
+     *  and save it to file.
+     *  if the file save successfully return true.
+     * @param file - the file name (may include a relative path).
+     * @return
+     */
     @Override
     public boolean save(String file) {
         System.out.println("serialize " + file);
@@ -134,6 +195,14 @@ public class WGraph_Algo implements weighted_graph_algorithms {
         return true;
     }
 
+    /**
+     * Load this graph from the given file name,
+     * this method deserialize the graph from the given file
+     * and init the graph to this set of algorithm.
+     * if the file Load successfully return true.
+     * @param file - file name
+     * @return
+     */
     @Override
     public boolean load(String file) {
         System.out.println("Deserialize " + file);
@@ -157,18 +226,32 @@ public class WGraph_Algo implements weighted_graph_algorithms {
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        WGraph_Algo that = (WGraph_Algo) o;
-        return g0.equals(that.g0);
-    }
 
+
+    /**
+     * Dijkstra algorithm is an algorithm to fined the shortest path between nodes(by weight).
+     * this method find the shortest distance by weight from src node to all the node in the graph.
+     * this method based on 4 data structure nodeDis(HashMap), unused(PriorityQueue), used(HashSet)
+     * and nodePar(HashMap).
+     * first add the src node to unused PriorityQueue and set is weight to 0,
+     * continue while unused is not empty,
+     * iterate throw all it's neighbors and every node that not in the nodeDis HaseMap add with -1 weight,
+     * (nodeDis contains node(Key) and his distance from src(Value)),
+     * if the node weight is bigger then his father weight + the edge weight or node weight = -1
+     * replace the node weight with his father + the edge between the node and his father.
+     * (skip this step for the father node).
+     * add to unused PriorityQueue and if needed add the father to nodePar HaseMap , same for all neighbors.
+     * after that pull the next node from unused, because of the PriorityQueue every next node on the list
+     * will be with the lightest weight.
+     * after iterate throw all the graph all the nodes will be in the nodeDis Hashmap and contain in the value
+     * their min weight from src node.
+     * also the nodePar will contain every node and his father when called from shortestPath method.
+     *
+     *
+     * @param src
+     */
 
     public void Dijkstra(int src) {
-
-
         g0.getNode(src).setTag(0.0);
         nodeDis.put(g0.getNode(src), 0.0);
         unused.add(g0.getNode(src));
@@ -205,6 +288,9 @@ public class WGraph_Algo implements weighted_graph_algorithms {
 
     }
 
+    /**
+     * set all node tag to -1.
+     */
     private void reset_nodes() {
         Iterator<node_info> it2 = g0.getV().iterator();
         while (it2.hasNext()) {

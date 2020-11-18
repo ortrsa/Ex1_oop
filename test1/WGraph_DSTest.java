@@ -84,9 +84,9 @@ class WGraph_DSTest {
         WGraph_Algo gc = new WGraph_Algo();
         ga.init(G);
         gc.init(ga.copy());
-        assertEquals(ga,gc,"the graph and his copy should be equals");
+        assertEquals(ga.getGraph(),gc.getGraph(),"the graph and his copy should be equals");
         ga.getGraph().removeNode(5);
-        assertNotEquals(ga,gc,"after removing node");
+        assertNotEquals(ga.getGraph(),gc.getGraph(),"after removing node");
 
     }
 

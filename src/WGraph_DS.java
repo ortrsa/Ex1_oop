@@ -56,7 +56,7 @@ public class WGraph_DS implements weighted_graph, java.io.Serializable {
      * return the weight between node1 and node2,
      * if they doesn't exist return -1.
      * if node1=node2 return 0.
-     * else return the wight by getting node1 edges hashmap and return the value of node 2.
+     * else return the weight by getting node1 edges hashmap and return the value of node 2.
      *
      * @param node1
      * @param node2
@@ -91,11 +91,11 @@ public class WGraph_DS implements weighted_graph, java.io.Serializable {
     }
 
     /**
-     * this method connect node1 and node2 with wight 'w',
+     * this method connect node1 and node2 with weight 'w',
      * first checking if w>=0 else throw exception.
      * then if node1 and node2 is already connected make sure that edge_size doesn't increase.
      * than take node1 neighbors Hashmap and put inside
-     * node2(as Key) with the wight(as Value) and vice versa.
+     * node2(as Key) with the weight(as Value) and vice versa.
      *
      * @param node1
      * @param node2
@@ -104,7 +104,7 @@ public class WGraph_DS implements weighted_graph, java.io.Serializable {
 
     @Override
     public void connect(int node1, int node2, double w) {
-        if (w < 0) throw new IllegalArgumentException("wight need to be bigger then 0");
+        if (w < 0) throw new IllegalArgumentException("weight need to be bigger then 0");
         if (g.containsKey(node1) && g.containsKey(node2) && node1 != node2) {
             if (!hasEdge(node1, node2)) edge_size++;
             HashMap<Integer, Double> t1 = edges.get(node1);

@@ -23,9 +23,9 @@ class WGraph_AlgoTest {
         ga.init(G);
         gb.init(ga.copy());
         assertAll(
-                () -> assertEquals(ga.getGraph().edgeSize(), gb.getGraph().edgeSize(), "the graphs should be the same edge"),
-                () -> assertEquals(ga.getGraph().nodeSize(), gb.getGraph().nodeSize(), "the graphs should be the same nodes"),
-                () -> assertEquals(ga.getGraph().hasEdge(1, 2), gb.getGraph().hasEdge(1, 2), "the graphs should be the same edge"),
+                () -> assertEquals(ga.getGraph().edgeSize(), gb.getGraph().edgeSize(), "the graphs should have the same edge"),
+                () -> assertEquals(ga.getGraph().nodeSize(), gb.getGraph().nodeSize(), "the graphs should have the same nodes"),
+                () -> assertEquals(ga.getGraph().hasEdge(1, 2), gb.getGraph().hasEdge(1, 2), "the graphs should have the same edge"),
                 () -> G.removeNode(5),
                 () -> assertNotEquals(ga.getGraph().nodeSize(), gb.getGraph().nodeSize(), "the copy shouldn't change if the source graph changed")
 
@@ -95,11 +95,12 @@ class WGraph_AlgoTest {
         WGraph_Algo ga = new WGraph_Algo();
         WGraph_Algo q = new WGraph_Algo();
         ga.init(G);
-        ga.save("file_test.txt");
-        q.load("file_test.txt");
+        ga.save("file_test.obj");
+        q.load("file_test.obj");
         assertEquals(G,q.getGraph(),"the graph copy should be equals to the graph source");
         q.getGraph().removeEdge(0,3);
         assertNotEquals(G,q.getGraph(),"change on the graph copy shouldn't effect on the graph source ");
+        assertFalse(ga.load("nonExistFile.obj"));
 
     }
 
