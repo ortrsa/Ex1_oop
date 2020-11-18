@@ -6,10 +6,8 @@ import org.junit.jupiter.api.Timeout;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Date;
-import java.util.List;
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class WGraph_DSTest {
@@ -42,6 +40,20 @@ class WGraph_DSTest {
         assertEquals(2, G.getEdge(4, 2),"should be the same as the opposite ");
         assertEquals(0, G.getEdge(2, 2),"the edge between node to himself should be 0");
         assertEquals(-1, G.getEdge(2, 22), "22 is not a node on this graph");
+    }
+
+    @Test
+    void getV() {
+        G = GraphGenerator(0, 0, SEED);
+        assertTrue(G.getV().isEmpty());
+        for (int i = 0; i < 10; i++) {
+            G.addNode(i);
+            G.connect(i,i+1,5);
+        }
+        for (node_info n: G.getV()) {
+
+        }
+
     }
     @Test
     void getV_node_id(){

@@ -106,7 +106,10 @@ public class WGraph_DS implements weighted_graph, java.io.Serializable {
     public void connect(int node1, int node2, double w) {
         if (w < 0) throw new IllegalArgumentException("weight need to be bigger then 0");
         if (g.containsKey(node1) && g.containsKey(node2) && node1 != node2) {
-            if (!hasEdge(node1, node2)) edge_size++;
+            if (!hasEdge(node1, node2)) {
+                edge_size++;
+            }
+            if(hasEdge(node1, node2) && getEdge(node1, node2)==w)MC--;
             HashMap<Integer, Double> t1 = edges.get(node1);
             HashMap<Integer, Double> t2 = edges.get(node2);
             t1.put(node2, w);
