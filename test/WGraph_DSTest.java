@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Timeout;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Date;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Random;
@@ -16,6 +17,7 @@ class WGraph_DSTest {
     private static Random rnd;
     private WGraph_DS G;
     private final int SEED = 2;
+
     @Test
     void hasEdge() {
         G = GraphGenerator(5, 10, SEED);
@@ -76,6 +78,22 @@ class WGraph_DSTest {
 
 
     }
+    @Test
+    void removeFromGraph(){
+        G = GraphGenerator(10, 20, SEED);
+        assertTrue(G.hasEdge(6,7));
+        G.removeNode(6);
+        assertFalse(G.hasEdge(6,7),"after remove 6 shouldn't be any edge to 6 ");
+        assertNull(G.removeNode(6),"node 6 already removed, should return null");
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                G.removeEdge(i,j);
+            }
+        }
+        assertEquals(0,G.edgeSize(),"after remove all edges souled be 0");
+
+
+    }
 
     @Test
     void testEquals() {
@@ -89,7 +107,25 @@ class WGraph_DSTest {
         assertNotEquals(ga.getGraph(),gc.getGraph(),"after removing node");
 
     }
-
+    @Test
+    void WGraphTimeTest() {
+        long start = new Date().getTime();
+        G = GraphGenerator(500000, 2012745, SEED);
+        assertFalse(G.hasEdge(1,2));
+        for (int i = 0; i <10000 ; i++) {
+            G.connect(i,i+1,6);
+        }
+        assertTrue(G.hasEdge(1,2));
+        for (int i = 0; i <10000 ; i++) {
+            G.removeNode(i);
+        }
+        assertFalse(G.hasEdge(63455,22234));
+        long end = new Date().getTime();
+        double time = (end-start)/1000.0;
+        if (time>10){
+                    fail("running time for timeTest is: " + time);
+        }
+    }
 
 
 
@@ -109,7 +145,6 @@ class WGraph_DSTest {
             int w = rnd.nextInt(V);
             int t = rnd.nextInt(20);
             G.connect(v, w, t);
-            System.out.println(G.edgeSize() + " " + v + " " + w +" "+ (G.getEdge(w,v)==t) );
         }
         return G;
     }

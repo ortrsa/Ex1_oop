@@ -1,10 +1,6 @@
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Random;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -54,17 +50,19 @@ class WGraph_AlgoTest {
 
     @Test
     void shortestPathDist() {
-        G = GraphGenerator(6, 7, SEED);
+        G = GraphGenerator(500000, 700000, SEED);
         WGraph_Algo ga = new WGraph_Algo();
         G.connect(2, 0, 10);
         G.connect(5, 3, 10);
         ga.init(G);
-        double dis = ga.shortestPathDist(4, 5);
-        assertEquals(7.0, dis, "shortest path from 4 to 5");
-        G.removeNode(2);
-        dis = ga.shortestPathDist(4, 5);
-        assertEquals(13.0, dis, "shortest path from 4 to 5 after removing node 2");
+        double dis = ga.shortestPathDist(78, 9);
+        assertEquals(15.0, dis, "shortest path from 4 to 5");
+        for (int i = 80; i <10080 ; i++) {
+            G.removeNode(i);
+        }
 
+        dis = ga.shortestPathDist(4, 5);
+        assertEquals(18.0, dis, "shortest path from 4 to 5 after removing node 10000 nodes");
         WGraph_DS G0 = new WGraph_DS();
         ga.init(G0);
         assertEquals(ga.shortestPathDist(1, 2), -1, "shortest path to non exist nodes is -1");
@@ -100,15 +98,10 @@ class WGraph_AlgoTest {
         assertEquals(G,q.getGraph(),"the graph copy should be equals to the graph source");
         q.getGraph().removeEdge(0,3);
         assertNotEquals(G,q.getGraph(),"change on the graph copy shouldn't effect on the graph source ");
-        assertFalse(ga.load("nonExistFile.obj"));
-
+        assertFalse(q.load("nonExistFile.obj"));
     }
 
 
-//    @Test
-//    void time() {
-//        GraphGenerator(1000000, 500000, SEED);
-//    }
 
 /////////////////////////////
     public static WGraph_DS GraphGenerator(int V, int E, int seed) {
@@ -125,7 +118,6 @@ class WGraph_AlgoTest {
             int w = rnd.nextInt(V);
             int t = 1 + rnd.nextInt(2);
             G.connect(v, w, t);
-            //System.out.println( v + " " + w + " " + t); // print the created graph
 
         }
         return G;
