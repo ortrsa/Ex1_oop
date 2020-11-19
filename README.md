@@ -3,19 +3,22 @@
 # Overview 
 This project is an implementation of data structures and algorithms on undirectional weighted graph in Java.  
 The main goal of this project is to find the shortest path between 2 given nodes in the most effective way.  
-This repo contains the follow file:  
-src:
-- uybrt. 
-- hggh. 
-- kjh. 
-
-
-test:
-- gdf
-- dfsg
-- msd
-
+This repo contains the following files:  
+- .gitignore
+- README.md  
   
+  src:
+- weighted_graph.java 
+- weighted_graph_algorithms.java 
+- node_info.java
+- WGraph_DS.java
+- WGraph_Algo.java 
+
+  test:
+- WGraph_DSTest.java
+- WGraph_AlgoTest.java  
+  
+    
 This project implementation Dijkstra Algorithm to reach this goal.  
 
 # Dijkstra Algorithm
@@ -31,7 +34,7 @@ To understand the algorithm in depth I recommend watching this video: [Dijkstra'
 # Example of use cases
 Here some sample for using this program in real life:  
 for example, we need to fine the best way from Tel Aviv to Ashdod.  
-At the first example all road heve the same weight no traffic of accidents.  
+At the first example all road have the same weight no traffic of accidents.  
 At the second example thar is heavy traffic jam at the road between Holon and Ashdod and between Rishon Lezion and Rehovot.
 
 ### Regular map
@@ -116,7 +119,7 @@ This program is text based, to run it all you need to do is to download the repo
 For use all the methods create Main class and use it as shown in the examples above.  
 If you want to add GUI interface feel free to fork this repo and add a pull request after it's done.
 
-# Linkes:
+# Links:
 - [Dijkstra's Algorithm - Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
 - [Dijkstra's Algorithm - Computerphile(youtube)](https://www.youtube.com/watch?v=GazC3A4OQTE&feature=youtu.be) 
 
