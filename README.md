@@ -17,7 +17,7 @@ test:
   
 This project implementation implementation to reach this goal.  
 
-# implementation
+# Dijkstra Algorithm
 This algorithm calculates the shortest path(by weight) from a starting node to all other nodes in a graph.
 This implementation also contains a method that can return the shortest path to a specified node.
 I found that the easiest way to understand the implementation of this algorithm is with a flow chart:
