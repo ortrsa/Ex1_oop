@@ -5,7 +5,8 @@
 # Real Time Use
 
 # Regular map
-![alt text](https://i.ibb.co/qdfW2Dq/2020-11-19-10-43-52.png =480x‬)
+<img src="https://i.ibb.co/qdfW2Dq/2020-11-19-10-43-52.png" alt="drawing" width="200"/>
+
 
 
 # Trafficed map 
