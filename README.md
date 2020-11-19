@@ -96,5 +96,9 @@ If you want to add GUI interface feel free to fork this repo and add a pull requ
 
 # Linkes:
 
+# About:
+This project is part of oop course of Ariel university and made for study purposes.  
+This project made by Or Trabelsi, for more information please contact me, email - ortrsa@gmail.com.
+
 
 
