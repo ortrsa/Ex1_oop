@@ -16,7 +16,6 @@ at the second example thar is heavy traffic jam at the road between Holon and As
 [![image](https://www.linkpicture.com/q/צילום-מסך-2020-11-19-ב-12.19.02_1.png)](https://www.linkpicture.com/view.php?img=LPic5fb65455dfb331797244551)
 #### Input:
 ```
-
 WGraph_DS IsraelMap = new WGraph_DS();
         IsraelMap.addNode(1);
         IsraelMap.getNode(1).setInfo("Tel Aviv");
@@ -42,9 +41,14 @@ WGraph_DS IsraelMap = new WGraph_DS();
         IsraelMapAlgo.shortestPath(1,6);
         System.out.println(IsraelMapAlgo.PathtoString());
 ```
+#### Output:
 
-
-
+```
+          file: No file loaded
+src/dest nodes: Tel Aviv -> Ashdod
+ shortest path:  -> Tel Aviv -> Holon -> Ashdod
+  total weight: 2.0
+```
 
 
 ### Trafficed map 
