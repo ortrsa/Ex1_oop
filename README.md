@@ -3,10 +3,16 @@
 # Overveiw 
 
 # Dijkstra Algorithm
+This algorithm calculates the shortest path(by weight from a starting node to all other nodes in a graph.
+This implementation also contains a method that can return the shortest path to a specified node.
+I found that the easiest way to understand the implementation of this algorithm is with a flow chart:
 
 ![alt text](https://i.ibb.co/G25wb87/Dijkstra-Ex1.png)
 
-# Uses in reality
+To understand the algorithem in depth I recommend watching this video: [Dijkstra's Algorithm - Computerphile](https://www.youtube.com/watch?v=GazC3A4OQTE&feature=youtu.be) 
+
+
+# Example of use cases
 Here some sample for using this program in real life:  
 for example, we need to fined the best way from Tel Aviv to Ashdod.  
 At the firest example all road heve the same weight no traffic of accidents.  
