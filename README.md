@@ -1,9 +1,9 @@
 # Ex1 oop
 
-# Overveiw 
+# Overview 
 This project is an implementation of data structures and algorithms on undirectional weighted graph in Java.  
 The main goal of this project is to find the shortest path between 2 given nodes in the most effective way.  
-This repo contain the follow file:  
+This repo contains the follow file:  
 src:
 - uybrt. 
 - hggh. 
@@ -16,7 +16,7 @@ test:
 - msd
 
   
-This project implementation implementation to reach this goal.  
+This project implementation Dijkstra Algorithm to reach this goal.  
 
 # Dijkstra Algorithm
 This algorithm calculates the shortest path(by weight) from a starting node to all other nodes in a graph.
@@ -25,13 +25,13 @@ I found that the easiest way to understand the implementation of this algorithm 
 
 ![alt text](https://i.ibb.co/G25wb87/Dijkstra-Ex1.png)
 
-To understand the algorithem in depth I recommend watching this video: [Dijkstra's Algorithm - Computerphile](https://www.youtube.com/watch?v=GazC3A4OQTE&feature=youtu.be) 
+To understand the algorithm in depth I recommend watching this video: [Dijkstra's Algorithm - Computerphile](https://www.youtube.com/watch?v=GazC3A4OQTE&feature=youtu.be) 
 
 
 # Example of use cases
 Here some sample for using this program in real life:  
-for example, we need to fined the best way from Tel Aviv to Ashdod.  
-At the firest example all road heve the same weight no traffic of accidents.  
+for example, we need to fine the best way from Tel Aviv to Ashdod.  
+At the first example all road heve the same weight no traffic of accidents.  
 At the second example thar is heavy traffic jam at the road between Holon and Ashdod and between Rishon Lezion and Rehovot.
 
 ### Regular map
@@ -114,7 +114,7 @@ src/dest nodes: Tel Aviv -> Ashdod
 # How To Run
 This program is text based, to run it all you need to do is to download the repo and add it to your IDE.  
 For use all the methods create Main class and use it as shown in the examples above.  
-If you want to add GUI interface feel free to fork this repo and add a pull requeste after it's done.
+If you want to add GUI interface feel free to fork this repo and add a pull request after it's done.
 
 # Linkes:
 - [Dijkstra's Algorithm - Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
