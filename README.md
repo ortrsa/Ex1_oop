@@ -4,11 +4,18 @@
 This project is an implementation of data structures and algorithms on undirectional weighted graph in Java.  
 The main goal of this project is to find the shortest path between 2 given nodes in the most effective way.  
 This repo contain the follow file:
-- src
--- 12
-- test
--- 123
-# Dijkstra Algorithm
+src:
+- qwe
+- qwe
+- qwe
+-qwe
+test:
+- 123
+- wqe
+  
+This project implementation implementation to reach this goal.  
+
+# implementation
 This algorithm calculates the shortest path(by weight) from a starting node to all other nodes in a graph.
 This implementation also contains a method that can return the shortest path to a specified node.
 I found that the easiest way to understand the implementation of this algorithm is with a flow chart:
