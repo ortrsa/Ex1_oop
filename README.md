@@ -14,8 +14,9 @@ at the second example thar is heavy traffic jam at the road between Holon and As
 
 ### Regular map
 [![image](https://www.linkpicture.com/q/צילום-מסך-2020-11-19-ב-12.19.02_1.png)](https://www.linkpicture.com/view.php?img=LPic5fb65455dfb331797244551)
-####Input:
-'''ruby
+#### Input:
+```
+
 WGraph_DS IsraelMap = new WGraph_DS();
         IsraelMap.addNode(1);
         IsraelMap.getNode(1).setInfo("Tel Aviv");
@@ -40,7 +41,8 @@ WGraph_DS IsraelMap = new WGraph_DS();
         IsraelMapAlgo.init(IsraelMap);
         IsraelMapAlgo.shortestPath(1,6);
         System.out.println(IsraelMapAlgo.PathtoString());
-'''
+```
+
 
 
 
