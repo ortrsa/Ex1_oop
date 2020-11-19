@@ -1,4 +1,4 @@
-# Ex1 oop
+# Ex1
 
 # Overview 
 This project is an implementation of data structures and algorithms on undirectional weighted graph in Java.  
@@ -127,7 +127,7 @@ If you want to add GUI interface feel free to fork this repo and add a pull requ
 # Links:
 - [Dijkstra's Algorithm - Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
 - [Dijkstra's Algorithm - Computerphile(youtube)](https://www.youtube.com/watch?v=GazC3A4OQTE&feature=youtu.be)
-- [Wiki Test Run Time](https://github.com/ortrsa/Ex1_oop/wiki/Tests-run-time)
+- [My Test Run Time - Wiki](https://github.com/ortrsa/Ex1_oop/wiki/Tests-run-time)
 
 # About:
 This project is part of oop course of Ariel university and made for study purposes.  
