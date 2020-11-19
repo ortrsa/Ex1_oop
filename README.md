@@ -8,10 +8,12 @@ src:
 - uybrt. 
 - hggh. 
 - kjh. 
-test:  
-- kjh. 
-- kjg. 
 
+
+test:
+- gdf
+- dfsg
+- msd
 
   
 This project implementation implementation to reach this goal.  
