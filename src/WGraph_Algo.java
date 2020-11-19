@@ -12,6 +12,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
     private Set<node_info> used;
     private PriorityQueue<node_info> unused;
     private List<node_info> path;
+    private String filename = "No file loaded";
 
     /**
      * default constructor.
@@ -22,6 +23,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
 
     /**
      * Init the graph which this set of algorithms operates on.
+     *
      * @param g
      */
     @Override
@@ -31,6 +33,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
 
     /**
      * return the graph which this set of algorithms operates on.
+     *
      * @return
      */
     @Override
@@ -42,6 +45,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
      * this method Compute a deep copy of this graph by making new WGraph_DS,
      * iterate throw all its nodes and the node neighbors,
      * use 'addNode' and 'connect' methods to create exactly same graph.
+     *
      * @return
      */
 
@@ -71,6 +75,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
      * to the distance from the first node.
      * after that iterate throw all the node, if there is node with tag -1 flag change to false.
      * return flag at end.
+     *
      * @return
      */
     @Override
@@ -114,7 +119,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
      * and save it on the node tag
      * after end Dijkstra algorithm return dest tag.
      *
-     * @param src - start node
+     * @param src  - start node
      * @param dest - end (target) node
      * @return
      */
@@ -140,7 +145,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
      * while the pointer not equal to 'src' node, pointer = 'nodePar'.
      * reverse path list and return path.
      *
-     * @param src - start node
+     * @param src  - start node
      * @param dest - end (target) node
      * @return
      */
@@ -167,15 +172,17 @@ public class WGraph_Algo implements weighted_graph_algorithms {
     }
 
     /**
-     *  Saves this graph to the given file name,
-     *  this method use the serializable interface to serialize the graph
-     *  and save it to file.
-     *  if the file save successfully return true.
+     * Saves this graph to the given file name,
+     * this method use the serializable interface to serialize the graph
+     * and save it to file.
+     * if the file save successfully return true.
+     *
      * @param file - the file name (may include a relative path).
      * @return
      */
     @Override
     public boolean save(String file) {
+
         System.out.println("serialize " + file);
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
@@ -200,11 +207,13 @@ public class WGraph_Algo implements weighted_graph_algorithms {
      * this method deserialize the graph from the given file
      * and init the graph to this set of algorithm.
      * if the file Load successfully return true.
+     *
      * @param file - file name
      * @return
      */
     @Override
     public boolean load(String file) {
+        filename = file;
         System.out.println("Deserialize " + file);
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
@@ -226,8 +235,6 @@ public class WGraph_Algo implements weighted_graph_algorithms {
     }
 
 
-
-
     /**
      * Dijkstra algorithm is an algorithm to fined the shortest path between nodes(by weight).
      * this method find the shortest distance by weight from src node to all the node in the graph.
@@ -246,7 +253,6 @@ public class WGraph_Algo implements weighted_graph_algorithms {
      * after iterate throw all the graph all the nodes will be in the nodeDis Hashmap and contain in the value
      * their min weight from src node.
      * also the nodePar will contain every node and his father when called from shortestPath method.
-     *
      *
      * @param src
      */
@@ -299,4 +305,33 @@ public class WGraph_Algo implements weighted_graph_algorithms {
         }
     }
 
+    @Override
+    public String toString() {
+        return
+                "g0=\n" + g0 +
+                        ", path=" + path;
+    }
+
+    public String PathtoString() {
+        try {
+            String pathInfo = "";
+            String s;
+
+            for (node_info n : path) {
+                pathInfo = pathInfo + " -> " + n.getInfo();
+
+            }
+
+
+            s = "\n          file: " + filename +
+                    "\nsrc/dest nodes: " + path.get(0).getInfo() + " -> " + path.get(path.size() - 1).getInfo() +
+                    "\n shortest path: " + pathInfo +
+                    "\n  total weight: " + g0.getNode(path.get(path.size() - 1).getKey()).getTag();
+            return s;
+        } catch (Exception e) {
+            System.err.println("use shortestPath method before use toString for WGraph_Algo");
+            return g0.toString();
+        }
+
+    }
 }

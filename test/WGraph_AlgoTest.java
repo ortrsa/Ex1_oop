@@ -98,7 +98,7 @@ class WGraph_AlgoTest {
         assertEquals(G,q.getGraph(),"the graph copy should be equals to the graph source");
         q.getGraph().removeEdge(0,3);
         assertNotEquals(G,q.getGraph(),"change on the graph copy shouldn't effect on the graph source ");
-        assertFalse(q.load("nonExistFile.obj"));
+
     }
 
 

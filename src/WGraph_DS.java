@@ -305,10 +305,9 @@ public class WGraph_DS implements weighted_graph, java.io.Serializable {
 
         @Override
         public String toString() {
-            return "{" + " key=" + key +
-                    " Tag=" + Tag +
-                    ", Info='" + Info +
-                    " }";
+            return  "node: " + key +" Info: "+Info+
+                    " ("+Tag+")" ;
+
         }
 
         /**
@@ -351,11 +350,14 @@ public class WGraph_DS implements weighted_graph, java.io.Serializable {
 
     @Override
     public String toString() {
-        return
-                "MC=" + MC +
-                        ", g=" + g +
-                        "\n" +
-                        '}';
+        String s = "";
+        Iterator it = g.values().iterator();
+        while (it.hasNext()){
+            s = s + it.next() +" \n";
+        }
+
+
+        return s;
     }
 
 }
