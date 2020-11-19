@@ -35,7 +35,7 @@ To understand the algorithm in depth I recommend watching this video: [Dijkstra'
 Here some sample for using this program in real life:  
 for example, we need to fine the best way from Tel Aviv to Ashdod.  
 At the first example all road have the same weight no traffic of accidents.  
-At the second example thar is heavy traffic jam at the road between Holon and Ashdod and between Rishon Lezion and Rehovot.
+At the second example thar is heavy traffic jam at the road between Holon and Ashdod and between Rishon Lezion and Yavne.
 
 ### Regular map
 [![image](https://www.linkpicture.com/q/צילום-מסך-2020-11-19-ב-12.19.02_1.png)](https://www.linkpicture.com/view.php?img=LPic5fb65455dfb331797244551)
