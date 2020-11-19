@@ -6,7 +6,6 @@
 
 # Regular map
 
-<a href="https://ibb.co/s2G6Xgx"><img src="https://i.ibb.co/qdfW2Dq/2020-11-19-10-43-52.png" alt="Dijkstra" border="0" width="1000"></a>
 [![image](https://www.linkpicture.com/q/צילום-מסך-2020-11-19-ב-12.15.51.png)](https://www.linkpicture.com/view.php?img=LPic5fb646102beca472179639)
 
 
