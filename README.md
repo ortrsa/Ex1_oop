@@ -90,8 +90,7 @@ src/dest nodes: Tel Aviv -> Ashdod
 ```
 
 # How To Run
-This program is text based, to run it all you need to do is to download the repo and add it to your IDE.
-  For use all the methods create Main class and use it as shown in the examples above.
+This program is text based, to run it all you need to do is to download the repo and add it to your IDE.  For use all the methods create Main class and use it as shown in the examples above.
 If you want to add GUI interface feel free to fork this repo and add a pull requeste after it's done.
 
 
