@@ -101,8 +101,8 @@ For use all the methods create Main class and use it as shown in the examples ab
 If you want to add GUI interface feel free to fork this repo and add a pull requeste after it's done.
 
 # Linkes:
-[Dijkstra's Algorithm - Computerphile(youtube)](https://www.youtube.com/watch?v=GazC3A4OQTE&feature=youtu.be) 
-[Dijkstra's Algorithm - Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
+- [Dijkstra's Algorithm - Computerphile(youtube)](https://www.youtube.com/watch?v=GazC3A4OQTE&feature=youtu.be) 
+- [Dijkstra's Algorithm - Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
 # About:
 This project is part of oop course of Ariel university and made for study purposes.  
 This project made by Or Trabelsi, for more information please contact me, email - ortrsa@gmail.com.
