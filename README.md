@@ -5,7 +5,7 @@
 # Real Time Use
 
 ### Regular map
-[![image](https://www.linkpicture.com/q/צילום-מסך-2020-11-19-ב-12.19.02.png)](https://www.linkpicture.com/view.php?img=LPic5fb646cd1952d1234352976)
+[![image](https://www.linkpicture.com/q/צילום-מסך-2020-11-19-ב-12.19.02_1.png)](https://www.linkpicture.com/view.php?img=LPic5fb65455dfb331797244551)
 
 
 
