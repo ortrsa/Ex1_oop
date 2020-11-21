@@ -121,7 +121,6 @@ $ git clone https://github.com/ortrsa/ex1.git
 
 ```
 For use all the methods create Main class and use it as shown in the examples above.  
-If you want to add GUI interface feel free to fork this repo and add a pull request after it's done.
 
 # Links:
 - [Dijkstra's Algorithm - Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
