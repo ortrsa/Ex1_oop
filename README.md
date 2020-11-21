@@ -114,13 +114,16 @@ src/dest nodes: Tel Aviv -> Ashdod
   total weight: 5.0
 ```
 
-# How To Run  
+# How To Run
+This program is text based, to run it all you need to do is to clone the repo and open it with your IDE.  
 Pull the file from the Git repository with the command : 
 ```sh
 $ git clone https://github.com/ortrsa/ex1.git
 
 ```
 For use all the methods create Main class and use it as shown in the examples above.  
+If you want to add GUI interface feel free to fork this repo and add a pull request after it's done.  
+
 
 # Links:
 - [Dijkstra's Algorithm - Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
